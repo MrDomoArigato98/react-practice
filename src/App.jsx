@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { getImageUrl } from "./utils";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function Card({ children }) {
+  const style ={
+    border: "1px solid black",
+    borderRadius: "2px"
+  }
+  return <div className="card" style={style}>{children}</div>;
+}
+function Avatar({ person, size }) {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <img
+      className="Avatar"
+      src={getImageUrl(person)}
+      alt={person.name}
+      width={size}
+      height={size}
+    ></img>
+  );
 }
 
-export default App
+function App() {
+  return (
+    
+    <Card>
+      <Avatar person={{ name: "Lin Lanying", imageId: "1bX5QH6" }} size={100} />
+      <p>Test</p>
+    </Card>
+  );
+}
+
+export default App;
